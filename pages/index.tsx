@@ -1,12 +1,15 @@
 import Head from "next/head";
-import { DynamicWidget } from "@dynamic-labs/sdk-react-core";
 import { useAccount } from "wagmi";
 import { Flex } from "@mantine/core";
 import { useIsMounted } from "@/lib/hooks";
+import { useDynamicContext } from "@dynamic-labs/sdk-react-core";
+import LoggedOut from "@/components/LoggedOut";
+import Header from "@/components/Header";
 
 export default function Home() {
   const isMounted = useIsMounted();
   const { address, isConnected, chain } = useAccount();
+  const { isAuthenticated } = useDynamicContext();
 
   return (
     <>
@@ -16,20 +19,28 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
+      <Flex direction={"column"} w={"100%"} h={"100vh"}>
         {isMounted && (
           <>
-            <Flex p={16} justify={"flex-end"}>
-              <DynamicWidget />
-            </Flex>
-            <Flex direction={"column"} justify={"center"} align={"center"}>
-              <p>wagmi connected: {isConnected ? "true" : "false"}</p>
-              <p>wagmi address: {address}</p>
-              <p>wagmi network: {chain?.id}</p>
-            </Flex>
+            <Header />
+            {isAuthenticated ? (
+              <Flex
+                direction={"column"}
+                justify={"center"}
+                align={"center"}
+                w={"100%"}
+                h={"100%"}
+              >
+                <p>wagmi connected: {isConnected ? "true" : "false"}</p>
+                <p>wagmi address: {address}</p>
+                <p>wagmi network: {chain?.id}</p>
+              </Flex>
+            ) : (
+              <LoggedOut />
+            )}
           </>
         )}
-      </main>
+      </Flex>
     </>
   );
 }
