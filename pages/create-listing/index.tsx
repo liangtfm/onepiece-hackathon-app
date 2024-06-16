@@ -1,4 +1,4 @@
-import { Flex, Text } from "@mantine/core";
+import { Flex, Text, TextInput } from "@mantine/core";
 
 export default function CreateListing() {
   return (
@@ -13,6 +13,9 @@ export default function CreateListing() {
       >
         Create listing
       </Text>
+      <Flex>
+        <TextInput label="Address" placeholder="Enter Address" />
+      </Flex>
     </Flex>
   );
 }

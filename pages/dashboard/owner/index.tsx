@@ -1,4 +1,4 @@
-import { Flex, Text } from "@mantine/core";
+import { Flex, Text, Button } from "@mantine/core";
 
 export default function OwnerDashboard() {
   return (
@@ -13,6 +13,10 @@ export default function OwnerDashboard() {
       >
         Owner Dashboard
       </Text>
+      <Flex>
+        <Text>Mint Homeowner Badge</Text>
+        <Button>Mint</Button>
+      </Flex>
     </Flex>
   );
 }
