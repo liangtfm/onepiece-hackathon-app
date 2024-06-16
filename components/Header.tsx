@@ -4,6 +4,8 @@ import { useIsMounted } from "@/lib/hooks";
 import { useDynamicContext } from "@dynamic-labs/sdk-react-core";
 import Link from "next/link";
 import { useAccount } from "wagmi";
+import Image from "next/image";
+import logo from "../public/logo.svg";
 
 export default function Header() {
   const isMounted = useIsMounted();
@@ -23,8 +25,10 @@ export default function Header() {
       align={"center"}
       h={80}
     >
-      <Flex>
-        <Link href={"/"}>Logo</Link>
+      <Flex w={64}>
+        <Link href={"/"}>
+          <Image src={logo} alt="Casa Home Logo" width={64} />
+        </Link>
       </Flex>
       <Flex>
         {isAuthenticated && (
