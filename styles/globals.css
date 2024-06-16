@@ -105,3 +105,44 @@ a {
     color-scheme: dark;
   }
 }
+
+
+.blob {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: url('/ethereum.svg') no-repeat center center, 
+              linear-gradient(180deg, rgba(47, 184, 255, 0.25) 31.77%, rgba(92, 157, 241, 0.25) 100%);
+  background-size: 150px, cover;  /* Ensures the Ethereum logo is visible and the gradient covers the rest */
+  mix-blend-mode: color-dodge;
+  animation: move 25s infinite alternate;
+  transition: 1s cubic-bezier(0.07, 0.8, 0.16, 1);
+  border-radius: 50%;  /* Keeps the blob circular */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.blob:hover {
+  width: 520px;
+  height: 520px;
+  filter: blur(15px);  /* Reduced blur for subtlety */
+  box-shadow:
+    inset 0 0 0 5px rgba(255,255,255, 0.2),  /* More faded */
+    inset 100px 100px 0 0px rgba(250, 112, 154, 0.1),  /* More faded */
+    inset 200px 200px 0 0px rgba(120, 75, 168, 0.1),   /* More faded */
+    inset 300px 300px 0 0px rgba(43, 134, 197, 0.1);   /* More faded */
+}
+
+@keyframes move {
+  from {
+    transform: translate(-100px, -50px) rotate(-90deg);
+    border-radius: 50%;  /* Consistent circular shape */
+  }
+  to {
+    transform: translate(500px, 100px) rotate(-10deg);
+    border-radius: 50%;  /* Consistent circular shape */
+  }
+}

@@ -18,7 +18,7 @@ export default function LoggedOut() {
         style={{ fontSize: "3rem", textAlign: "center" }}
         p={16}
       >
-        Connect Your Wallet
+        To get started, Connect Your Wallet!
       </Text>
     </Flex>
   );
