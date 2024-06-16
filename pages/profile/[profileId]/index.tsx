@@ -16,6 +16,10 @@ export default function Profile() {
       >
         Profile
       </Text>
+      <Flex direction={"column"} align={"center"}>
+        <Text>Owner Badge: You are currently Level 3</Text>
+        <Text>Renter Badge: You are currently Level 1</Text>
+      </Flex>
     </Flex>
   );
 }
