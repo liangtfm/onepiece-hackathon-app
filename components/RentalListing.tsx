@@ -31,7 +31,11 @@ export default function RentalListing(props: { listing: string }) {
         fullWidth
         mt="md"
         radius="md"
-        onClick={() => setRequested(true)}
+        onClick={(event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          setRequested(true);
+        }}
         disabled={requested}
       >
         Request to Rent
