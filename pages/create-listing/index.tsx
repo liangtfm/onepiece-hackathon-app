@@ -1,16 +1,8 @@
-import React from "react";
 import { Flex, Text } from "@mantine/core";
 
-export default function Renter() {
+export default function CreateListing() {
   return (
-    <Flex
-      direction={"column"}
-      pos={"relative"}
-      justify={"center"}
-      align={"center"}
-      h={"100%"}
-      w={"100%"}
-    >
+    <Flex direction={"column"} pos={"relative"} h={"100%"} w={"100%"} pt={80}>
       <Text
         variant="gradient"
         fw={"800"}
@@ -19,7 +11,7 @@ export default function Renter() {
         style={{ fontSize: "3rem", textAlign: "center" }}
         p={16}
       >
-        Renter
+        Create listing
       </Text>
     </Flex>
   );

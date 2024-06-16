@@ -2,14 +2,7 @@ import { Flex, Text } from "@mantine/core";
 
 export default function RenterDashboard() {
   return (
-    <Flex
-      direction={"column"}
-      pos={"relative"}
-      justify={"center"}
-      align={"center"}
-      h={"100%"}
-      w={"100%"}
-    >
+    <Flex direction={"column"} pos={"relative"} h={"100%"} w={"100%"} pt={80}>
       <Text
         variant="gradient"
         fw={"800"}

@@ -29,6 +29,9 @@ export default function Header() {
       <Flex>
         {isAuthenticated && (
           <Flex justify={"center"} align={"center"} gap={8} mr={8}>
+            <Link href={"/create-listing"}>
+              <Button>+ Create Listing</Button>
+            </Link>
             <Link href={"/dashboard/renter"}>
               <Button>Renter</Button>
             </Link>
