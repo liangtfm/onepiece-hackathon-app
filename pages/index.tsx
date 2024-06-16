@@ -1,12 +1,47 @@
+import React from "react";
 import Head from "next/head";
-import { Flex, Title } from "@mantine/core";
+import { Flex, Text } from "@mantine/core";
 import { useIsMounted } from "@/lib/hooks";
 import { useDynamicContext } from "@dynamic-labs/sdk-react-core";
 import LoggedOut from "@/components/LoggedOut";
+import { useReadContract } from "wagmi";
+import {
+  HOME_LISTING_CONTRACT_ABI,
+  HOME_LISTING_CONTRACT_ADDRESS,
+} from "@/lib/constants";
+import { readContract } from "@wagmi/core";
+import { config } from "@/lib/config";
+import RentalListing from "@/components/RentalListing";
+import Link from "next/link";
 
 export default function Home() {
   const isMounted = useIsMounted();
   const { isAuthenticated } = useDynamicContext();
+  const { data: numListings } = useReadContract({
+    address: HOME_LISTING_CONTRACT_ADDRESS,
+    abi: HOME_LISTING_CONTRACT_ABI,
+    functionName: "totalSupply",
+  });
+
+  const [listings, setListings] = React.useState<any[]>([]);
+
+  React.useEffect(() => {
+    const fetchListings = async () => {
+      const newListings: any[] = [];
+      for (let i = 1; i <= Number(numListings ?? 0); i++) {
+        const listing = await readContract(config, {
+          address: HOME_LISTING_CONTRACT_ADDRESS,
+          abi: HOME_LISTING_CONTRACT_ABI,
+          functionName: "getListingAddress",
+          args: [i],
+        });
+
+        newListings.push({ listing, id: i });
+      }
+      setListings(newListings);
+    };
+    fetchListings();
+  }, [numListings]);
 
   return (
     <>
@@ -20,16 +55,26 @@ export default function Home() {
         {isMounted && (
           <>
             {isAuthenticated ? (
-              <Flex
-                direction={"column"}
-                justify={"center"}
-                align={"center"}
-                w={"100%"}
-                h={"100%"}
-              >
-                <div>
-                  <Title>Listings</Title>
-                </div>
+              <Flex direction={"column"} w={"100%"} h={"100%"}>
+                <Flex mt={80} justify={"center"} direction={"column"}>
+                  <Text
+                    variant="gradient"
+                    fw={"800"}
+                    size={"xl"}
+                    gradient={{ from: "violet", to: "cyan", deg: 45 }}
+                    style={{ fontSize: "3rem", textAlign: "center" }}
+                    p={16}
+                  >
+                    Rental Listings
+                  </Text>
+                  <Flex p={16} gap={16}>
+                    {listings.map((listing) => (
+                      <Link href={`/rental/${listing.id}`} key={listing}>
+                        <RentalListing listing={listing.listing} />
+                      </Link>
+                    ))}
+                  </Flex>
+                </Flex>
               </Flex>
             ) : (
               <LoggedOut />
