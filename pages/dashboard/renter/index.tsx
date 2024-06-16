@@ -35,7 +35,12 @@ export default function RenterDashboard() {
         Renter Dashboard
       </Text>
       <Flex justify={"center"}>
-        <Flex w={300} direction={"column"}>
+        <Flex
+          w={500}
+          direction={"column"}
+          p={16}
+          style={{ borderRadius: 8, background: "#fff" }}
+        >
           <div>
             <Text>
               Mint your Renter Badge to build your reputation and request to

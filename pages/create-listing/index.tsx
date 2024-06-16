@@ -48,7 +48,13 @@ export default function CreateListing() {
         Create listing
       </Text>
       <Flex justify={"center"}>
-        <Flex w={300} direction={"column"} gap={24}>
+        <Flex
+          w={500}
+          direction={"column"}
+          gap={24}
+          p={16}
+          style={{ borderRadius: 8, background: "#fff" }}
+        >
           <div>
             <TextInput
               label="Address"
