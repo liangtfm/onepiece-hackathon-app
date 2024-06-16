@@ -7,7 +7,9 @@ export default function Document() {
       <Head>
         <ColorSchemeScript defaultColorScheme="auto" />
       </Head>
-      <body>
+      <body style={{ background: 'linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);', // Light blue to white gradient
+      }}>
+        <div className="blob"></div>
         <Main />
         <NextScript />
       </body>
