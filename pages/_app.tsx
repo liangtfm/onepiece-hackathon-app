@@ -8,6 +8,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { DynamicContextProvider } from "@dynamic-labs/sdk-react-core";
 import { EthereumWalletConnectors } from "@dynamic-labs/ethereum";
 import { DynamicWagmiConnector } from "@dynamic-labs/wagmi-connector";
+import Layout from "@/components/Layout";
 
 const queryClient = new QueryClient();
 
@@ -46,7 +47,9 @@ export default function App({ Component, pageProps }: AppProps) {
         <WagmiProvider config={config}>
           <QueryClientProvider client={queryClient}>
             <DynamicWagmiConnector>
-              <Component {...pageProps} />
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
             </DynamicWagmiConnector>
           </QueryClientProvider>
         </WagmiProvider>

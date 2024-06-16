@@ -1,14 +1,11 @@
 import Head from "next/head";
-import { useAccount } from "wagmi";
-import { Flex } from "@mantine/core";
+import { Flex, Title } from "@mantine/core";
 import { useIsMounted } from "@/lib/hooks";
 import { useDynamicContext } from "@dynamic-labs/sdk-react-core";
 import LoggedOut from "@/components/LoggedOut";
-import Header from "@/components/Header";
 
 export default function Home() {
   const isMounted = useIsMounted();
-  const { address, isConnected, chain } = useAccount();
   const { isAuthenticated } = useDynamicContext();
 
   return (
@@ -22,7 +19,6 @@ export default function Home() {
       <Flex direction={"column"} w={"100%"} h={"100vh"}>
         {isMounted && (
           <>
-            <Header />
             {isAuthenticated ? (
               <Flex
                 direction={"column"}
@@ -31,9 +27,9 @@ export default function Home() {
                 w={"100%"}
                 h={"100%"}
               >
-                <p>wagmi connected: {isConnected ? "true" : "false"}</p>
-                <p>wagmi address: {address}</p>
-                <p>wagmi network: {chain?.id}</p>
+                <div>
+                  <Title>Listings</Title>
+                </div>
               </Flex>
             ) : (
               <LoggedOut />
